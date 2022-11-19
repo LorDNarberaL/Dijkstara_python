@@ -1,4 +1,4 @@
-from controllers.Graph import Graph
+from Controllers.Graph import Graph
 import sys
 
 class Dijkstra(Graph) :
@@ -49,7 +49,7 @@ class Dijkstra(Graph) :
 
     def printDijkstra(self, dist, start, end) :
         
-        outText = ("Shortest Distance from V[%d] to V[%d] = %d Unit" %(start, end, dist[end][0]))
+        outText = ("Shortest Distance from V[%d] to V[%d] = %d" %(start, end, dist[end][0]))
         outList = []
         outList.append(outText)
         outText = "Shortest Path : "

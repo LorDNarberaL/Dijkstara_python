@@ -1,8 +1,8 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField, TelField
-from controllers.Dijkstra import Dijkstra
-from controllers.Sphero import *
+from Controllers.Dijkstra import Dijkstra
+from Controllers.Sphero import *
 import json
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ class MyForm(FlaskForm):
     startNode = IntegerField("Input Start Node")
     endNode = IntegerField("Input End Node")
     submit = SubmitField("Submit")
-    bName = TelField("Input Sphero Buletooth Name")
+    bName = TelField("Sphero Buletooth Name")
 
 @app.route("/")
 def index():
@@ -42,10 +42,9 @@ def dijkstra():
                     "dijkText": dijkText
                 }
 
-        with open("model.json", "w") as outfile :
-            json.dump(model, outfile)
+        json.dump(model, open("./Model/model.json", "w"))
 
-    jobj = json.load(open('model.json', "r"))
+    jobj = json.load(open('./Model/model.json', "r"))
 
     if (jobj == None) :
         flash("Please Input Node")
