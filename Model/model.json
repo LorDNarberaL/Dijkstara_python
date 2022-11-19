@@ -1,1 +1,1 @@
-{"startNode": 3, "endNode": 2, "dist": [[30, 3], [40, 0], [35, 5], [0, "None"], [70, 2], [20, 3]], "dijkText": ["Shortest Distance from V[3] to V[2] = 35", "Shortest Path :  V[3] --> V[5] | 20 --> V[2] | 15"]}
+{"startNode": 1, "endNode": 2, "dist": [[10, 1], [0, "None"], [40, 5], [40, 0], [40, 1], [25, 1]], "dijkText": ["Shortest Distance from V[1] to V[2] = 40", "Shortest Path :  V[1] --> V[5] | 25 --> V[2] | 15"]}
