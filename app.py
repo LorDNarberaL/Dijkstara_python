@@ -3,6 +3,8 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField, TelField
 from controllers.Dijkstra import Dijkstra
 from controllers.Sphero import *
+import json
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mykey'
 dijk = Dijkstra()
@@ -32,15 +34,32 @@ def dijkstra():
 
         dist = dijk.dijkstra(startNode)
         dijkText = dijk.printDijkstra(dist, startNode, endNode)
+        
+        model = {   
+                    "startNode": startNode, 
+                    "endNode": endNode,
+                    "dist": dist,
+                    "dijkText": dijkText
+                }
 
-        bName = form.bName.data
-        sphero(bName)
+        with open("model.json", "w") as outfile :
+            json.dump(model, outfile)
 
-    if (startNode == None or endNode == None) :
+    jobj = json.load(open('model.json', "r"))
+
+    if (jobj == None) :
         flash("Please Input Node")
         return redirect(url_for('index'))  
     else :
-        return render_template("dijkstra.html", form = form, nodes = {"startNode":startNode, "endNode":endNode}, dist = dist, distLength = len(dist), dijk = dijkText)
+        return render_template("dijkstra.html", form = form, nodes = {"startNode":jobj['startNode'], "endNode":jobj['endNode']}, dist = jobj['dist'], distLength = len(jobj['dist']), dijk = jobj['dijkText'])
+
+@app.route("/sendBName", methods = ['GET', 'POST'])
+def sendBName():
+    form = MyForm()
+    if form.validate_on_submit() :
+        bName = form.bName.data
+        sphero(bName)
+    return redirect(url_for('dijkstra'))
 
 if __name__ == "__main__" :
     app.run(debug=True)

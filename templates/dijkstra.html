@@ -20,6 +20,23 @@
             </div>
         </div>
 
+        <form action="{{url_for('sendBName')}}" method="POST">
+            {{form.hidden_tag()}}
+        <div class="row justify-content-center mt-4 mb-4">
+            <div class="col-md-4 fs-4 text-start">
+                <label class="form-label">{{form.bName.label}}</label>
+            </div>
+            <div class="col-md-2 text-start">
+                {{form.bName(class="form-control")}}
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4 mb-4">
+            <div class="col-md-6 text-end">
+                {{form.submit(class="btn btn-primary")}}
+            </div>
+        </div>
+        </form>
+
         <div class="row justify-content-start mb-4">
             <div class="col text-start">
                 <table class="table table-bordered border-primary text-center">
