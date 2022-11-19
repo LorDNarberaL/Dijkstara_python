@@ -2,8 +2,7 @@ from flask import Flask, render_template, flash, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField, TelField
 from controllers.Dijkstra import Dijkstra
-from controllers.Sphero import Sphero
-
+from controllers.Sphero import *
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mykey'
 dijk = Dijkstra()
@@ -12,7 +11,7 @@ class MyForm(FlaskForm):
     startNode = IntegerField("Input Start Node")
     endNode = IntegerField("Input End Node")
     submit = SubmitField("Submit")
-    buletooth = TelField("Input Sphero Buletooth Name")
+    bName = TelField("Input Sphero Buletooth Name")
 
 @app.route("/")
 def index():
@@ -34,8 +33,8 @@ def dijkstra():
         dist = dijk.dijkstra(startNode)
         dijkText = dijk.printDijkstra(dist, startNode, endNode)
 
-        buletooth = form.buletooth.data
-        Sphero(buletooth)
+        bName = form.bName.data
+        sphero(bName)
 
     if (startNode == None or endNode == None) :
         flash("Please Input Node")

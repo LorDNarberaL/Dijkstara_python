@@ -28,7 +28,7 @@
             {{form.hidden_tag()}}
 
             <div class="row justify-content-center mt-4 mb-4">
-                <div class="col-md-4 fs-3 text-start">
+                <div class="col-md-4 fs-4 text-start">
                     <label class="form-label">{{form.startNode.label}}</label>
                     <!-- {{form.startNode.label}} -->
                 </div>
@@ -39,7 +39,7 @@
             </div>
     
             <div class="row justify-content-center mt-4 mb-4">
-                <div class="col-md-4 fs-3 text-start">
+                <div class="col-md-4 fs-4 text-start">
                     <label class="form-label">{{form.endNode.label}}</label>
                     <!-- {{form.endNode.label}} -->
                 </div>
@@ -50,11 +50,11 @@
             </div>
 
             <div class="row justify-content-center mt-4 mb-4">
-                <div class="col-md-4 fs-3 text-start">
-                    <label class="form-label">{{form.buletooth.label}}</label>
+                <div class="col-md-4 fs-4 text-start">
+                    <label class="form-label">{{form.bName.label}}</label>
                 </div>
                 <div class="col-md-2 text-start">
-                    {{form.buletooth(class="form-control")}}
+                    {{form.bName(class="form-control")}}
                 </div>
             </div>
     
@@ -74,7 +74,7 @@
 
         {% for i in range(0, graphLenght) %}
             <div class="row mt-4 mb-4">
-                <div class="col fs-3 text-start">
+                <div class="col fs-4 text-start">
                     <p style="margin-left: 40px;">{{graph[i]}}</p>
                 </div>
             </div>

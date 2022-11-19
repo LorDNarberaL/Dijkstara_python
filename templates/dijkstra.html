@@ -25,14 +25,14 @@
                 <table class="table table-bordered border-primary text-center">
                     <thead class="table-primary border-primary">
                         <tr>
-                            <th scope="col">Nodes</th>
-                            <th scope="col">Shortest Distance Form {{nodes.startNode}}</th>
-                            <th scope="col">Previous Node</th>
+                            <th scope="col"><h3>Nodes</h3></th>
+                            <th scope="col"><h3>Shortest Distance(Unit) Form {{nodes.startNode}}</h3></th>
+                            <th scope="col"><h3>Previous Node</h3></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for i in range(0, distLength) %}
-                            <tr>
+                            <tr class="fs-4">
                                 <td scope="row">{{i}}</td>
                                 <td>{{dist[i][0]}}</td>
                                 <td>{{dist[i][1]}}</td>

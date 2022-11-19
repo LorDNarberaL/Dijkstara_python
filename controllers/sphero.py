@@ -3,16 +3,11 @@ from spherov2 import scanner
 from spherov2.sphero_edu import SpheroEduAPI
 from spherov2.types import Color
 
-class Sphero() :
-
-    def __init__(self, buletooth) :
-        # self.toy = scanner.find_toy(
-        #     toy_name = buletooth,
-        # )
-        print(buletooth)
-
-    def sphero(self) :
-        with SpheroEduAPI(self.toy) as droid:
+def sphero(bName) :
+    print(bName)
+    try:
+        toy = scanner.find_toy(toy_name=bName,)
+        with SpheroEduAPI(toy) as droid:
             print("start")
             droid.reset_aim()
             droid.set_main_led(Color(r=255, g=255, b=255))
@@ -28,3 +23,5 @@ class Sphero() :
             time.sleep(2)
             droid.roll(45, 20, 1)
             print("Stop")
+    except Exception as err:
+        print(err.args)
