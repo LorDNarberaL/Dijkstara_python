@@ -13,7 +13,6 @@ class MyForm(FlaskForm):
     endNode = IntegerField("Input End Node")
     submit = SubmitField("Submit")
     buletooth = TelField("Input Sphero Buletooth Name")
-    start = SubmitField("Start")
 
 @app.route("/")
 def index():
@@ -35,20 +34,14 @@ def dijkstra():
         dist = dijk.dijkstra(startNode)
         dijkText = dijk.printDijkstra(dist, startNode, endNode)
 
+        buletooth = form.buletooth.data
+        Sphero(buletooth)
+
     if (startNode == None or endNode == None) :
         flash("Please Input Node")
         return redirect(url_for('index'))  
     else :
         return render_template("dijkstra.html", form = form, nodes = {"startNode":startNode, "endNode":endNode}, dist = dist, distLength = len(dist), dijk = dijkText)
-
-# @app.route("/sphero", methods = ['GET', 'POST'])
-# def sphero():
-#     form = MyForm()
-#     if form.validate_on_submit() :
-#         buletooth = form.start.data
-#         Sphero(buletooth)
-#     return redirect(url_for('dijkstra')) 
-
 
 if __name__ == "__main__" :
     app.run(debug=True)

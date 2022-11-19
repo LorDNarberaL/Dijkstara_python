@@ -49,10 +49,10 @@ class Dijkstra(Graph) :
 
     def printDijkstra(self, dist, start, end) :
         
-        outText = ("Shortest Path from V[%d] to V[%d] = %d" %(start, end, dist[end][0]))
+        outText = ("Shortest Distance from V[%d] to V[%d] = %d Unit" %(start, end, dist[end][0]))
         outList = []
         outList.append(outText)
-        outText = ""
+        outText = "Shortest Path : "
 
         outText = outText + (" V[%d]"%start)
         

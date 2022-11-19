@@ -18,7 +18,7 @@
         {% endwith %}  
 
         <div class="row justify-content-center mt-4 mb-4">
-            <div class="col text-center">
+            <div class="col badge bg-primary text-wrap text-center">
                 <h1>Learning Dijkstra's Algorithm with Sphero</h1>
             </div>
         </div>
@@ -28,7 +28,7 @@
             {{form.hidden_tag()}}
 
             <div class="row justify-content-center mt-4 mb-4">
-                <div class="col-md-2 text-start">
+                <div class="col-md-4 fs-3 text-start">
                     <label class="form-label">{{form.startNode.label}}</label>
                     <!-- {{form.startNode.label}} -->
                 </div>
@@ -39,7 +39,7 @@
             </div>
     
             <div class="row justify-content-center mt-4 mb-4">
-                <div class="col-md-2 text-start">
+                <div class="col-md-4 fs-3 text-start">
                     <label class="form-label">{{form.endNode.label}}</label>
                     <!-- {{form.endNode.label}} -->
                 </div>
@@ -48,9 +48,18 @@
                     {{form.endNode(class="form-control")}}
                 </div>
             </div>
+
+            <div class="row justify-content-center mt-4 mb-4">
+                <div class="col-md-4 fs-3 text-start">
+                    <label class="form-label">{{form.buletooth.label}}</label>
+                </div>
+                <div class="col-md-2 text-start">
+                    {{form.buletooth(class="form-control")}}
+                </div>
+            </div>
     
             <div class="row justify-content-center mt-4 mb-4">
-                <div class="col-md-4 text-end">
+                <div class="col-md-6 text-end">
                     <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                     {{form.submit(class="btn btn-primary")}}
                 </div>
@@ -59,13 +68,13 @@
 
         <div class="row mt-4 mb-4">
             <div class="col text-start">
-                <h2>Graph :</h2>
+                <h3>Graph :</h3>
             </div>
         </div>
 
         {% for i in range(0, graphLenght) %}
             <div class="row mt-4 mb-4">
-                <div class="col text-start">
+                <div class="col fs-3 text-start">
                     <p style="margin-left: 40px;">{{graph[i]}}</p>
                 </div>
             </div>
