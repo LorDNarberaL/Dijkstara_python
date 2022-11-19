@@ -2,24 +2,57 @@
 
 {% block content %}
     <div class="container-sm">
-        
-        <h1>This is Dijkstra</h1>
-        <h1>{{data}}</h1>
-        <table class="table table-bordered border-primary text-center">
-            <thead class="table-primary border-primary">
-                <tr>
-                    <th scope="col">Nodes</th>
-                    <th scope="col">Shortest Distance Form {{data.startNode}}</th>
-                    <th scope="col">Previous Node</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td scope="row">1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row justify-content-center mt-4 mb-4">
+            <div class="col text-center">
+                <h1>Dijkstra's Algorithm Output</h1>
+            </div>
+        </div>
+
+        <form action="{{url_for('sphero')}}" method="POST">
+            {{ form.csrf_token }}
+            <div class="row justify-content-start mt-4">
+                <div class="col-md-6 text-start">
+                    <p>{{dijk[0]}}</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <label class="form-label">{{form.buletooth.label}}</label>
+                </div>
+                <div class="col-md-2 text-start">
+                    {{form.buletooth(class="form-control")}}
+                </div>
+                <div class="col-md-1 text-center">
+                    {{form.start(class="btn btn-primary")}}
+                </div>
+            </div>
+        </form>
+
+        <div class="row justify-content-start mb-4">
+            <div class="col text-start">
+                <p style="margin-left: 40px;">{{dijk[1]}}</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-start mb-4">
+            <div class="col text-start">
+                <table class="table table-bordered border-primary text-center">
+                    <thead class="table-primary border-primary">
+                        <tr>
+                            <th scope="col">Nodes</th>
+                            <th scope="col">Shortest Distance Form {{nodes.startNode}}</th>
+                            <th scope="col">Previous Node</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in range(0, distLength) %}
+                            <tr>
+                                <td scope="row">{{i}}</td>
+                                <td>{{dist[i][0]}}</td>
+                                <td>{{dist[i][1]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

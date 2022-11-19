@@ -1,83 +1,11 @@
+from controllers.Graph import Graph
 import sys
-class Graph :
-    class Node :
-        def __init__(self, edge) :
-            self.edge = edge
-            self.next = None
-
-    class Edge :
-        def __init__(self, start, end, weight) :
-            self.start = start
-            self.end = end
-            self.weight = weight
-            self.next = None
-
-        def getterStart(self) :
-            return self.start
-
-        def getterEnd(self) :
-            return self.end
-
-        def getterWeight(self) :
-            return self.weight
-    
-    def __init__(self, vertex) :
-        self.vertex = vertex
-        self.graph = [None] * self.vertex
-        self.listEdge = []
-
-    def addEdge(self, start, end, weight) :
-        edge = self.Edge(start, end, weight)
-        list = self.Node(edge)
-        list.next = self.graph[start]
-        self.graph[start] = list      
-
-        self.listEdge.append(edge)
-
-        #self.listEdge.insert(len(self.edgelist)-1, edge)
-        
-        edge = self.Edge(end, start, weight)
-        list = self.Node(edge)
-        list.next = self.graph[end]
-        self.graph[end] = list
-
-    def printGraph(self) :
-        print("Graph :")
-        for i in range(self.vertex) :
-            print(" V[%d]"%i,end = '')
-            list = self.graph[i]
-            if(list == None) :
-                print(" --> None")
-                continue
-            while (list != None) :
-                print(" --> V[%d]" %list.edge.getterEnd(),end = '')
-                print(" | %d" %list.edge.getterWeight(),end = '')
-                list = list.next
-            print()
-        
-    def printEdge(self) :
-        print("Edges :")
-        for i in range(len(self.listEdge)) :
-            print(" [%d]"%(i+1),end = '')
-            print(" Start %d" %self.listEdge[i].getterStart(),end = '')
-            print(" --> End %d" %self.listEdge[i].getterEnd(),end = '')
-            print(" | weight %d" %self.listEdge[i].getterWeight(),end = '')
-            print()
 
 class Dijkstra(Graph) :
 
-    def __init__(self, vertex):
-        super().__init__(vertex)
-        super().addEdge(0, 1, 10)
-        super().addEdge(0, 3, 30)
-        super().addEdge(0, 4, 45)
-        super().addEdge(1, 2, 50)
-        super().addEdge(1, 4, 40)
-        super().addEdge(1, 5, 25)
-        super().addEdge(2, 4, 35)
-        super().addEdge(2, 5, 15)
-        super().addEdge(3, 5, 20)
-        super().addEdge(4, 5, 55)
+    def __init__(self):
+        super().__init__()
+        
 
     def dijkstra(self, start) :
         newS = start
@@ -89,7 +17,7 @@ class Dijkstra(Graph) :
             if(i != start) : 
                 dist[i][0] = sys.maxsize
 
-        print(dist)
+        dist[start][1] = "None" 
 
         while(len(setV) != vertex) :
             list = self.graph[newS]
@@ -117,45 +45,35 @@ class Dijkstra(Graph) :
             setV.add(min)
             newS = min
         
-        print(dist)
+        return dist
 
-    def printDijkstra(self, dist, start) :
-
-        end = int(input("Enter End Vertex from Vertex "+str(start)+" (-1 to exit) : "))
+    def printDijkstra(self, dist, start, end) :
         
-        while(end != -1) :
-            print("Shortest Path from V[%d] to V[%d] = %d" %(start, end, dist[end][0]))
-            curr = end
-            print(" V[%d]"%start, end='')
-            p = None
+        outText = ("Shortest Path from V[%d] to V[%d] = %d" %(start, end, dist[end][0]))
+        outList = []
+        outList.append(outText)
+        outText = ""
 
-            while(curr != start) :
-                q = self.graph[curr]
-                #if(q == None) :
-                #    print(" --> null\n")
-                #    break
+        outText = outText + (" V[%d]"%start)
+        
+        curr = end
+        p = None
+
+        while(curr != start) :
+            q = self.graph[curr]
     
-                while(q.edge.getterEnd() != dist[curr][1]) :
-                    q = q.next
+            while(q.edge.getterEnd() != dist[curr][1]) :
+                q = q.next
                 
-                temp = self.Node(q.edge)
-                temp.next = p
-                p = temp
-                
-                #q.next = p
-                #p = q
+            temp = self.Node(q.edge)
+            temp.next = p
+            p = temp
 
-                curr = dist[curr][1]
-
-            #if(p == None) :
-            #    end = int(input("Enter End Vertex from Vertex "+str(start)+" (-1 to exit) : "))
-            #    continue
-                
-            while(p != None) :
-                print(" --> V[%d] | %d"%(p.edge.getterStart(), p.edge.getterWeight()), end='')
-                p = p.next
-            print()
-            print("------------------------------------------------------------")
-
-            end = int(input("Enter End Vertex from Vertex "+str(start)+" (-1 to exit) : "))
-
+            curr = dist[curr][1]
+             
+        while(p != None) :
+            outText = outText + (" --> V[%d] | %d"%(p.edge.getterStart(), p.edge.getterWeight()))
+            p = p.next
+        
+        outList.append(outText)
+        return outList        

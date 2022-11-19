@@ -1,21 +1,25 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, SubmitField
-from controllers import Dijkstra
-from controllers import Graph
+from wtforms import IntegerField, SubmitField, TelField
+from controllers.Dijkstra import Dijkstra
+from controllers.Sphero import Sphero
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mykey'
+dijk = Dijkstra()
 
 class MyForm(FlaskForm):
     startNode = IntegerField("Input Start Node")
     endNode = IntegerField("Input End Node")
     submit = SubmitField("Submit")
+    buletooth = TelField("Input Sphero Buletooth Name")
+    start = SubmitField("Start")
 
 @app.route("/")
 def index():
     form = MyForm()
-    return render_template("index.html", form = form)
+    graphList = dijk.printGraph()
+    return render_template("index.html", form = form, graph = graphList, graphLenght = len(graphList))
 
 @app.route("/dijkstra", methods = ['GET', 'POST'])
 def dijkstra():
@@ -27,12 +31,24 @@ def dijkstra():
         endNode = form.endNode.data
         form.startNode.data = ""
         form.endNode.data = ""
-    
+
+        dist = dijk.dijkstra(startNode)
+        dijkText = dijk.printDijkstra(dist, startNode, endNode)
+
     if (startNode == None or endNode == None) :
         flash("Please Input Node")
         return redirect(url_for('index'))  
     else :
-        return render_template("dijkstra.html", data = {"startNode":startNode, "endNode":endNode})
+        return render_template("dijkstra.html", form = form, nodes = {"startNode":startNode, "endNode":endNode}, dist = dist, distLength = len(dist), dijk = dijkText)
+
+# @app.route("/sphero", methods = ['GET', 'POST'])
+# def sphero():
+#     form = MyForm()
+#     if form.validate_on_submit() :
+#         buletooth = form.start.data
+#         Sphero(buletooth)
+#     return redirect(url_for('dijkstra')) 
+
 
 if __name__ == "__main__" :
     app.run(debug=True)

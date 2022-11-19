@@ -20,10 +20,20 @@ class Graph :
         def getterWeight(self) :
             return self.weight
     
-    def __init__(self, vertex) :
-        self.vertex = vertex
+    def __init__(self) :
+        self.vertex = 6
         self.graph = [None] * self.vertex
         self.listEdge = []
+        self.addEdge(0, 1, 10)
+        self.addEdge(0, 3, 30)
+        self.addEdge(0, 4, 45)
+        self.addEdge(1, 2, 50)
+        self.addEdge(1, 4, 40)
+        self.addEdge(1, 5, 25)
+        self.addEdge(2, 4, 35)
+        self.addEdge(2, 5, 15)
+        self.addEdge(3, 5, 20)
+        self.addEdge(4, 5, 55)
 
     def addEdge(self, start, end, weight) :
         edge = self.Edge(start, end, weight)
@@ -41,18 +51,21 @@ class Graph :
         self.graph[end] = list
 
     def printGraph(self) :
-        print("Graph :")
+        outList = []
+        outText = ""
         for i in range(self.vertex) :
-            print(" V[%d]"%i,end = '')
+            outText = outText + (" V[%d]"%i)
             list = self.graph[i]
             if(list == None) :
-                print(" --> None")
+                outText = outText + (" --> None")
                 continue
             while (list != None) :
-                print(" --> V[%d]" %list.edge.getterEnd(),end = '')
-                print(" | %d" %list.edge.getterWeight(),end = '')
+                outText = outText + (" --> V[%d]" %list.edge.getterEnd())
+                outText = outText + (" | %d" %list.edge.getterWeight())
                 list = list.next
-            print()
+            outList.append(outText)
+            outText = ""
+        return outList
         
     def printEdge(self) :
         print("Edges :")
