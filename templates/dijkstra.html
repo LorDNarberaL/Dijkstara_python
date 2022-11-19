@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container-sm">
+        
+        <h1>This is Dijkstra</h1>
+        <h1>{{data}}</h1>
+        <table class="table table-bordered border-primary text-center">
+            <thead class="table-primary border-primary">
+                <tr>
+                    <th scope="col">Nodes</th>
+                    <th scope="col">Shortest Distance Form {{data.startNode}}</th>
+                    <th scope="col">Previous Node</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

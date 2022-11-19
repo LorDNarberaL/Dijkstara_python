@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container-sm">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}  
+               {% for message in messages %}
+                    <div class="row justify-content-end">
+                        <div class="col-md-auto text-center">
+                            <div class="alert alert-danger" role="alert">
+                                {{message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>            
+               {% endfor %}  
+            {% endif %}  
+        {% endwith %}  
+
+        <div class="row justify-content-center mt-4 mb-4">
+            <div class="col text-center">
+                <h1>Learning Dijkstra's Algorithm with Sphero</h1>
+            </div>
+        </div>
+
+        <form action="{{url_for('dijkstra')}}" method="POST">
+
+            {{form.hidden_tag()}}
+
+            <div class="row justify-content-center mt-4 mb-4">
+                <div class="col-md-2 text-start">
+                    <label for="inputStart" class="form-label">{{form.startNode.label}}</label>
+                    <!-- {{form.startNode.label}} -->
+                </div>
+                <div class="col-md-2 text-start">
+                    <!-- <input type="text" name="startNode" class="form-control"> -->
+                    {{form.startNode(class="form-control")}}
+                </div>
+            </div>
+    
+            <div class="row justify-content-center mt-4 mb-4">
+                <div class="col-md-2 text-start">
+                    <label for="inputStart" class="form-label">{{form.endNode.label}}</label>
+                    <!-- {{form.endNode.label}} -->
+                </div>
+                <div class="col-md-2 text-start">
+                    <!-- <input type="text" name="endNode" class="form-control"> -->
+                    {{form.endNode(class="form-control")}}
+                </div>
+            </div>
+    
+            <div class="row justify-content-center mt-4 mb-4">
+                <div class="col-md-4 text-end">
+                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                    {{form.submit(class="btn btn-primary")}}
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
