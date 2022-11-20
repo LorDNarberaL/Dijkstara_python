@@ -1,1 +1,1 @@
-{"startNode": "A", "endNode": "a", "dist": [[0, "None"], [3, 3], [7, 4], [1, 0], [2, 3]], "dijkText": ["Shortest Distance from V[A] to V[A] = 0", "Shortest Path :  V[A]"], "vList": ["A", "B", "C", "D", "E"], "iStart": 0, "iEnd": 0}
+{"startNode": "A", "endNode": "C", "dist": [[0, "None"], [3, 3], [7, 4], [1, 0], [2, 3]], "dijkText": ["Shortest Distance from V[A] to V[C] = 7", "Shortest Path :  V[A] --> V[D] | 1 --> V[E] | 1 --> V[C] | 5"], "vList": ["A", "B", "C", "D", "E"], "iStart": 0, "iEnd": 2}
