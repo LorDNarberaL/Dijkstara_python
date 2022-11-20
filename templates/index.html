@@ -59,18 +59,18 @@
 
         <hr>
 
-        <div class="row mt-4 mb-4">
-            <div class="col text-start">
+        <div class="row justify-content-center mt-4 mb-4">
+            <div class="col-md-auto text-start">
+                <img src="https://cdn.discordapp.com/attachments/1014035664934805557/1043895958582349904/image.png" class="img-fluid" style="max-height: 300px;">
+            </div>
+            <div class="col-md-auto text-start">
                 <h3>Graph :</h3>
+                {% for i in range(0, graphLenght) %}
+                    <p class="fs-4 text-start" style="margin-left: 40px;">{{graph[i]}}</p>
+                {% endfor %}
             </div>
         </div>
 
-        {% for i in range(0, graphLenght) %}
-            <div class="row mt-4 mb-4">
-                <div class="col fs-4 text-start">
-                    <p style="margin-left: 40px;">{{graph[i]}}</p>
-                </div>
-            </div>
-        {% endfor %}
+        
     </div>
 {% endblock %}
