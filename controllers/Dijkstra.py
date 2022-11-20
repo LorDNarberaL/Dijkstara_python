@@ -48,13 +48,13 @@ class Dijkstra(Graph) :
         return dist
 
     def printDijkstra(self, dist, start, end) :
-        
-        outText = ("Shortest Distance from V[%d] to V[%d] = %d" %(start, end, dist[end][0]))
+        vList = self.vList
+        outText = ("Shortest Distance from V[%s] to V[%s] = %d" %(vList[start], vList[end], dist[end][0]))
         outList = []
         outList.append(outText)
         outText = "Shortest Path : "
 
-        outText = outText + (" V[%d]"%start)
+        outText = outText + (" V[%s]"%vList[start])
         
         curr = end
         p = None
@@ -72,7 +72,7 @@ class Dijkstra(Graph) :
             curr = dist[curr][1]
              
         while(p != None) :
-            outText = outText + (" --> V[%d] | %d"%(p.edge.getterStart(), p.edge.getterWeight()))
+            outText = outText + (" --> V[%s] | %d"%(vList[p.edge.getterStart()], p.edge.getterWeight()))
             p = p.next
         
         outList.append(outText)
