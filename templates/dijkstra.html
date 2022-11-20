@@ -2,6 +2,20 @@
 
 {% block content %}
     <div class="container-sm">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}  
+               {% for message in messages %}
+                    <div class="row justify-content-end">
+                        <div class="col-md-auto text-center">
+                            <div class="alert alert-success" role="alert">
+                                {{message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>            
+               {% endfor %}  
+            {% endif %}  
+        {% endwith %} 
         <div class="row justify-content-center mt-4 mb-4">
             <div class="col badge bg-primary text-wrap text-center">
                 <h1>Dijkstra's Algorithm Output</h1>

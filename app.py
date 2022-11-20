@@ -72,6 +72,7 @@ def sendBName():
     if form.validate_on_submit() :
         bName = form.bName.data
         sphero(bName)
+        flash("Connect "+bName+" Successful")
     return redirect(url_for('dijkstra'))
 
 if __name__ == "__main__" :
