@@ -17,9 +17,13 @@ class MyForm(FlaskForm):
 
 @app.route("/")
 def index():
-    form = MyForm()
     graphList = dijk.printGraph()
-    return render_template("index.html", form = form, graph = graphList, graphLenght = len(graphList))
+    return render_template("index.html", graph = graphList, graphLenght = len(graphList))
+
+@app.route("/input")
+def input():
+    form = MyForm()
+    return render_template("input.html", form = form)
 
 @app.route("/dijkstra", methods = ['GET', 'POST'])
 def dijkstra():
@@ -74,6 +78,10 @@ def sendBName():
         sphero(bName)
         flash("Connect "+bName+" Successful")
     return redirect(url_for('dijkstra'))
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
 
 if __name__ == "__main__" :
     app.run(debug=True)
