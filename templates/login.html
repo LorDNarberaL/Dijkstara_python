@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container-sm">
+        
+        <div class="row justify-content-center mt-4 mb-4">
+            <div class="col badge bg-primary text-wrap text-center">
+                <h1>Login Page</h1>
+            </div>
+        </div>
+
+        <form action="{{url_for('index')}}" method="POST">
+
+            <div class="row justify-content-center mt-4 mb-4">
+                <div class="col-md-2 fs-4 text-start">
+                    <label class="form-label">Username</label>
+                </div>
+                <div class="col-md-2 text-start">
+                    <input type="text" name="username" class="form-control">
+                </div>
+            </div>
+    
+            <div class="row justify-content-center mt-4 mb-4">
+                <div class="col-md-2 fs-4 text-start">
+                    <label class="form-label">Password</label>
+                </div>
+                <div class="col-md-2 text-start">
+                    <input type="text" name="pass" class="form-control">
+                </div>
+            </div>
+    
+            <div class="row justify-content-center mt-4 mb-4">
+                <div class="col-md-6 text-end">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
