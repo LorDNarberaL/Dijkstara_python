@@ -16,7 +16,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{{url_for('index')}}">Home</a>
               </li>
@@ -26,13 +26,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{url_for('dijkstra')}}">Dijkstra</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for('register')}}">Register</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for('login')}}">Login</a>
-              </li>
             </ul>
+            <div class="navbar-nav ms-auto">
+              <a class="nav-link" href="{{url_for('register')}}">
+                Register
+              </a>
+              <a href="{{url_for('login')}}">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </a>
+
+              <!-- <a href="{{url_for('index')}}">
+                <button type="submit" class="btn btn-primary">Logout</button>
+              </a> -->
+            </div>
           </div>
         </div>
       </nav>
